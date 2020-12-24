@@ -73,6 +73,11 @@ namespace Bluetooth.Android.Devices
             _bluetoothAdapter = BluetoothAdapter.DefaultAdapter;
             _bluetoothDevice = bluetoothDevice;
             _context = context;
+            InitClient();
+        }
+
+        public void InitClient()
+        {
             switch (_bluetoothDevice.Type)
             {
                 case BluetoothDeviceType.Classic:
@@ -100,10 +105,14 @@ namespace Bluetooth.Android.Devices
                     filter.AddAction(BluetoothDevice.ActionBondStateChanged);
                     _receiver = new BluetoothBroadcastReceiver();
                     _receiver.OnDeviceBonded += _receiver_OnDeviceBonded;
-                    context.RegisterReceiver(_receiver, filter);
+                    _context.RegisterReceiver(_receiver, filter);
                     if (_bluetoothDevice.BondState != Bond.Bonded)
                     {
                         _bluetoothDevice.CreateBond();
+                    }
+                    else
+                    {
+                        ConnectEvent?.Invoke(this, null);
                     }
                     break;
                 case BluetoothDeviceType.Unknown:
@@ -140,16 +149,20 @@ namespace Bluetooth.Android.Devices
             if (_isClient)
             {
                 if (useBle)
+                {
                     await ConnectClientLeAsync();
+                    if (_receiver != null)
+                        _context.UnregisterReceiver(_receiver);
+                }
                 else
+                {
                     await ConnectClientClassicAsync();
+                }
             }
             else
             {
                 await ConnectServerClassicAsync();
             }
-            if (_receiver != null)
-                _context.UnregisterReceiver(_receiver);
         }
 
         private async Task ConnectClientClassicAsync()
@@ -227,7 +240,6 @@ namespace Bluetooth.Android.Devices
                 await _tcsServerInit.Task;
 
                 BluetoothGattCharacteristic characteristic = _bluetoothGatt.GetService(read_UUID_service).GetCharacteristic(read_UUID_chara);
-                //_bluetoothGatt.ReadCharacteristic(characteristic);
                 _bluetoothGatt.SetCharacteristicNotification(characteristic, true);
 
                 Toast.MakeText(_context, "低功耗蓝牙初始化完成", ToastLength.Short).Show();
@@ -289,7 +301,8 @@ namespace Bluetooth.Android.Devices
                 BluetoothGattService service = _bluetoothGatt.GetService(write_UUID_service);
                 BluetoothGattCharacteristic charaWrite = service.GetCharacteristic(write_UUID_chara);
                 if (data.Length > 20)
-                {//数据大于个字节 分批次写入
+                {
+                    //数据大于20个字节 分批次写入
                     int num = 0;
                     if (data.Length % 20 != 0)
                     {

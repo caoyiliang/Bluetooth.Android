@@ -184,6 +184,7 @@ namespace Bluetooth.Android.Fragments
                         _device.ConnectEvent += _device_ConnectEvent;
                         _topPort = new TopPort(_device, new TimeParser(200));
                         _topPort.OnReceiveParsedData += _topPort_OnReceiveParsedData;
+                        _device.InitClient();
                     }
                     break;
                 case REQUEST_ENABLE_BT:
