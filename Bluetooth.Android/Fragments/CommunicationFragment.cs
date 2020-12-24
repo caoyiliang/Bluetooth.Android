@@ -182,6 +182,7 @@ namespace Bluetooth.Android.Fragments
                         var device = _bluetoothAdapter.GetRemoteDevice(address);
                         _device = new Device(Context, device);
                         _device.ConnectEvent += _device_ConnectEvent;
+                        _device.InitClient();
                         _topPort = new TopPort(_device, new TimeParser(200));
                         _topPort.OnReceiveParsedData += _topPort_OnReceiveParsedData;
                         _device.InitClient();
