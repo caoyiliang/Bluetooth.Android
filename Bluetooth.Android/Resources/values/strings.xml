@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">那个软件</string>
+    <string name="discovery">开始扫描</string>
+	<string name="title_paired_devices">已配对设备</string>
+	<string name="title_other_devices">未配对设备</string>
+	<string name="button_scan">扫描新设备</string>
+	<string name="discoverable">可发现</string>
+	<string name="none_paired">无配对设备</string>
+	<string name="scanning">设备搜索中...</string>
+	<string name="select_device">请选择设备连接</string>
+	<string name="none_found">无设备</string>
+	<string name="bt_not_enabled_leaving">无法启用蓝牙,程序将关闭...</string>
+	<string name="send">发送</string>
+	<string name="server">作为服务端</string>
+	<string name="about">关于</string>
+	<string name="EType">编码</string>
+	<string name="ok">Ok</string>
+	<string name="request_location_permissions">Android依赖于定位服务来检索蓝牙设备的身份。</string>
+</resources>
