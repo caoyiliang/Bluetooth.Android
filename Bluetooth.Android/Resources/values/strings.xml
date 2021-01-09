@@ -12,6 +12,7 @@
 	<string name="bt_not_enabled_leaving">无法启用蓝牙,程序将关闭...</string>
 	<string name="send">发送</string>
 	<string name="server">作为服务端</string>
+	<string name="serverLe">作为低功耗服务端</string>
 	<string name="about">关于</string>
 	<string name="EType">编码</string>
 	<string name="ok">Ok</string>

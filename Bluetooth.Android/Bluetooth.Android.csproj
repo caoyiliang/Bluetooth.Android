@@ -66,6 +66,8 @@
   <ItemGroup>
     <Compile Include="Activitys\DeviceListActivity.cs" />
     <Compile Include="Adapter\MyBaseAdapter.cs" />
+    <Compile Include="Ble\GattServerCallback.cs" />
+    <Compile Include="Ble\LeAdvertiseCallback.cs" />
     <Compile Include="Devices\Device.cs" />
     <Compile Include="Ble\GattCallback.cs" />
     <Compile Include="DataEncode.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToastUtils\ToastUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -18,6 +18,11 @@
         android:title="@string/server"/>
 
 	<item
+        android:id="@+id/serverLe"
+        android:showAsAction="never"
+        android:title="@string/serverLe"/>
+
+	<item
         android:id="@+id/EType"
         android:showAsAction="never"
         android:title="@string/EType"/>

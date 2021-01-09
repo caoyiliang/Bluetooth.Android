@@ -63,7 +63,7 @@ namespace Bluetooth.Android.Fragments
 
             if (_bluetoothAdapter == null)
             {
-                Toast.MakeText(Activity, "Bluetooth is not available.", ToastLength.Long).Show();
+                ToastUtils.ToastUtils.ShowToast(Activity, "Bluetooth is not available.");
                 Activity.FinishAndRemoveTask();
             }
 
@@ -144,6 +144,14 @@ namespace Bluetooth.Android.Fragments
                     _device.ConnectEvent += _device_ConnectEvent;
                     _topPort = new TopPort(_device, new TimeParser(200));
                     _topPort.OnReceiveParsedData += _topPort_OnReceiveParsedData;
+                    _device.InitSevice();
+                    return true;
+                case Resource.Id.serverLe:
+                    _device = new Device(Context, true);
+                    _device.ConnectEvent += _device_ConnectEvent;
+                    _topPort = new TopPort(_device, new TimeParser(200));
+                    _topPort.OnReceiveParsedData += _topPort_OnReceiveParsedData;
+                    _device.InitSevice();
                     return true;
                 case Resource.Id.EType:
                     AlertDialog.Builder builder = new AlertDialog.Builder(Context);
@@ -190,7 +198,7 @@ namespace Bluetooth.Android.Fragments
                 case REQUEST_ENABLE_BT:
                     if ((int)appResult.Ok != resultCode)
                     {
-                        Toast.MakeText(Activity, Resource.String.bt_not_enabled_leaving, ToastLength.Short).Show();
+                        ToastUtils.ToastUtils.ShowToast(Activity, Resource.String.bt_not_enabled_leaving);
                         Activity.FinishAndRemoveTask();
                     }
                     break;
@@ -203,9 +211,9 @@ namespace Bluetooth.Android.Fragments
             {
                 await _topPort.OpenAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Toast.MakeText(Context, "蓝牙连接失败", ToastLength.Short).Show();
+                ToastUtils.ToastUtils.ShowToast(Context, "蓝牙连接失败");
             }
         }
 
@@ -231,7 +239,7 @@ namespace Bluetooth.Android.Fragments
         {
             if ((_topPort == null) || (!_device.IsOpen))
             {
-                Toast.MakeText(Context, "蓝牙未连接", ToastLength.Short).Show();
+                ToastUtils.ToastUtils.ShowToast(Context, "蓝牙未连接");
                 return;
             }
             if (message.Length > 0)

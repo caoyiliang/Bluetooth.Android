@@ -25,6 +25,11 @@ namespace Bluetooth.Android.Ble
                     gatt.DiscoverServices();
                     StateChangeEvent?.Invoke(true, null);
                 }
+                else
+                {
+                    //连接失败
+                    StateChangeEvent?.Invoke(false, null);
+                }
             }
             else
             {

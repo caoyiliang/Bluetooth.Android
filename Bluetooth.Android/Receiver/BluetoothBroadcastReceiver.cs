@@ -24,11 +24,11 @@ namespace Bluetooth.Android.Receiver
 
             if (BluetoothAdapter.ActionDiscoveryStarted.Equals(action))
             {
-                Toast.MakeText(context, "Start Discovery", ToastLength.Short).Show();
+                ToastUtils.ToastUtils.ShowToast(context, "Start Discovery");
             }
             else if (BluetoothAdapter.ActionDiscoveryFinished.Equals(action))
             {
-                Toast.MakeText(context, "Finish Discovery", ToastLength.Short).Show();
+                ToastUtils.ToastUtils.ShowToast(context, "Finish Discovery");
                 OnDeviceFinish?.Invoke(this, null);
             }
             else if (BluetoothDevice.ActionFound.Equals(action))
