@@ -4,4 +4,4 @@
 ### 本案例低功耗蓝牙中使用串口透传服务
 #### UUID：0xFF12，Characteristic ：(Data In：0xFF01[权限：Write without response])、(Data Out：0xFF02[权限：Notify])
 
-#####有不对的地方请大家指出:347739303@qq.com
+##### 有不对的地方请大家指出:347739303@qq.com
