@@ -121,7 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CSoft.TopPortLib">
-      <Version>5.0.2</Version>
+      <Version>5.0.7</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Browser">
       <Version>1.3.0.4</Version>
@@ -135,7 +135,7 @@
     <PackageReference Include="Xamarin.AndroidX.Migration">
       <Version>1.0.8</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Xamarin.Google.Android.Material">
       <Version>1.2.1.1</Version>
     </PackageReference>
